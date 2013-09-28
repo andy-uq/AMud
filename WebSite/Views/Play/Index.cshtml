@@ -1,0 +1,125 @@
+﻿@model dynamic
+
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>A-Mud</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">A-Mud</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+
+
+	<!-- Main jumbotron for a primary marketing message or call to action -->
+	<div class="jumbotron">
+		<div class="container">
+			<h1>You are in a clearing</h1>
+			<div id="messages">
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<!-- Example row of columns -->
+		<div class="row">
+			<div id="movement" class="col-lg-4">
+				<h2>Movement</h2>
+				<div class="list-group">
+					<a id="north" class="list-group-item">North</a>
+					<a id="east" class="list-group-item">East</a>
+					<a id="south" class="list-group-item">South</a>
+					<a id="west" class="list-group-item">West</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<h2>Actions</h2>
+				<div class="list-group">
+					<a class="list-group-item">Look at...</a>
+					<a class="list-group-item">Pick up...</a>
+					<a class="list-group-item">Attack...</a>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<h2>Status</h2>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Character</h3>
+					</div>
+					<div class="panel-body">
+						You feel fine.
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Inventory</h3>
+					</div>
+					<div class="panel-body">
+						A small loaf of bread
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<footer>
+			<p>&copy; Company 2013</p>
+		</footer>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="//code.jquery.com/jquery.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+	<script src="/Scripts/jquery.signalR-1.1.3.min.js"></script>
+	<script src="/signalr/hubs"></script>
+	
+	<script type="text/javascript">
+		$(function () {
+			// Declare a proxy to reference the hub. 
+			var messageHub = $.connection.messageHub;
+			// Create a function that the hub can call to broadcast messages.
+			messageHub.client.sendMessage = function (content) {
+				var e = $('<p/>').html(content).appendTo($('#messages'));
+			    e[0].scrollIntoView();
+			};
+
+			// Start the connection.
+			$.connection.hub.start().done(function () {
+			    messageHub.server.connect();
+
+			    $('#movement a').click(function () {
+					// Call the Send method on the hub. 
+					messageHub.server.move($(this).attr("id"));
+				});
+			});
+		});
+    </script>
+</body>
+</html>

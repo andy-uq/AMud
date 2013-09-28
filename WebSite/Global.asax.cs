@@ -6,6 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 
+using Autofac;
+using MvcWebRole1.SignalR;
+
 namespace MvcWebRole1
 {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -19,6 +22,18 @@ namespace MvcWebRole1
 			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+			IocConfig.RegisterIoc(new ContainerBuilder());
+		}
+	}
+
+	public class IocConfig
+	{
+		public static void RegisterIoc(ContainerBuilder containerBuilder)
+		{
+			containerBuilder.RegisterType<ClientProvider>()
+				.As<IClientProvider>()
+				.SingleInstance();
 		}
 	}
 }
