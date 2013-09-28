@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace AMud
+namespace MvcWebRole1
 {
 	public static class WebApiConfig
 	{
