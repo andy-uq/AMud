@@ -3,7 +3,7 @@
   <Role name="WebSite">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=nightmage20storage;AccountKey=ArxbSXHspACamwJ54Lp/815GoghWO8lxkOdA/9N3nXBNmSriR+iQUP6Zu0nY01qsjUIYw0s3E+4gEw/XSYisyw==" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

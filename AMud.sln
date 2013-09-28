@@ -5,6 +5,11 @@ Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "AMud", "AMud.ccproj", "{DDE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSite", "WebSite\WebSite.csproj", "{441E282F-8A1E-4611-89F7-42DA3773D637}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6BDA147-DB03-4B1C-A035-93570A93F788}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
