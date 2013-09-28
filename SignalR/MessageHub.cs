@@ -13,8 +13,7 @@ namespace MvcWebRole1.SignalR
 
 		private static IClientProvider GetClientProvider()
 		{
-			//return (IClientProvider) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IClientProvider));
-			return new ClientProvider();
+			return (IClientProvider) System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IClientProvider));
 		}
 
 		private static IClientProvider ClientProvider

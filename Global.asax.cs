@@ -7,9 +7,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 
 using Autofac;
+using Autofac.Integration.Mvc;
 using MvcWebRole1.SignalR;
-
-namespace MvcWebRole1
+namespace AMud
 {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
 	// visit http://go.microsoft.com/?LinkId=9394801
@@ -26,14 +26,16 @@ namespace MvcWebRole1
 			IocConfig.RegisterIoc(new ContainerBuilder());
 		}
 	}
-
 	public class IocConfig
 	{
 		public static void RegisterIoc(ContainerBuilder containerBuilder)
 		{
+			containerBuilder.RegisterControllers();
 			containerBuilder.RegisterType<ClientProvider>()
 				.As<IClientProvider>()
 				.SingleInstance();
+			var container = containerBuilder.Build();
+			DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 		}
 	}
 }
