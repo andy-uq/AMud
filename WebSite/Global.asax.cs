@@ -5,10 +5,10 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-
+using AMud.SignalR;
 using Autofac;
 using Autofac.Integration.Mvc;
-using MvcWebRole1.SignalR;
+
 namespace AMud
 {
 	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
