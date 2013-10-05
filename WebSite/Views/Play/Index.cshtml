@@ -40,7 +40,11 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
-			<h1>You are in a clearing</h1>
+			<div id="room">
+				<p>You are in <span class="name"></span></p>
+				<p class="description"></p>
+				<ul class="contents"></ul>
+			</div>
 			<div id="messages">
 			</div>
 		</div>
@@ -76,12 +80,12 @@
 						You feel fine.
 					</div>
 				</div>
-				<div class="panel panel-default">
+				<div id="inventory" class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Inventory</h3>
 					</div>
 					<div class="panel-body">
-						A small loaf of bread
+						<ul class="items"></ul>
 					</div>
 				</div>
 			</div>
@@ -105,10 +109,63 @@
 			// Declare a proxy to reference the hub. 
 			var messageHub = $.connection.messageHub;
 			// Create a function that the hub can call to broadcast messages.
-			messageHub.client.sendMessage = function (content) {
+		    var showOtherPlayers = function(players) {
+		        
+		    };
+		    
+		    var itemLink = function(itemName, func) {
+		        return $('<a/>').html(itemName).click(func);
+		    };
+		    
+		    var showContents = function (contents) {
+		        var $room = $('#room .contents').empty();
+		    	$(contents).each(function () {
+		    	    var itemName = this.Name;
+		    	    $('<li/>').html(itemLink(itemName, function () {
+		    			messageHub.server.pickupItem(itemName);
+		    		})).appendTo($room);
+		    	});
+		    };
+		    
+		    var setCurrentRoom = function(room) {
+		    	$('#room .name').text(room.Name);
+		    	$('#room .description').text(room.Description);
+
+		    	showOtherPlayers(room.Players);
+		        showContents(room.Contents);
+		    };
+		    
+		    var showInventory = function(inventory) {
+		    	var $inventory = $('#inventory .items').empty();
+		    	if (!inventory.length) {
+		    		$('<li/>').html("You aren't carrying anything").appendTo($inventory);
+		            return;
+		        }
+
+		    	$(inventory).each(function () {
+		    		var itemName = this.Name;
+		    		$('<li/>').html(itemLink(itemName, function () {
+		    			messageHub.server.dropItem(itemName);
+		    		})).appendTo($inventory);
+		    	});
+		    };
+		    
+		    var setPlayerInfo = function (player) {
+		    	showInventory(player.Inventory);
+		    };
+		    
+		    messageHub.client.sendMessage = function (content) {
 				var e = $('<p/>').html(content).appendTo($('#messages'));
 			    e[0].scrollIntoView();
 			};
+
+		    messageHub.client.sendRoom = function(room) {
+		        setCurrentRoom(room);
+		    };
+
+		    messageHub.client.sendPlayer = function(player) {
+		        setPlayerInfo(player);
+		    };
 
 			// Start the connection.
 			$.connection.hub.start().done(function () {

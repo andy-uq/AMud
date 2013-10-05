@@ -17,6 +17,28 @@ namespace Tests
 		}
 
 		[Test]
+		public void CreatePlayerItem()
+		{
+			var p1 = new Player();
+			var item = new Item(p1) { Name = "1234" };
+
+			item.Room.Should().BeNull();
+			item.Owner.Should().Be(p1);
+			p1.Inventory.Should().Contain(item);
+		}
+
+		[Test]
+		public void CreateRoomItem()
+		{
+			var room = new Room();
+			var item = new Item(room) { Name = "1234" };
+
+			item.Owner.Should().BeNull();
+			item.Room.Should().Be(room);
+			room.Contents.Should().Contain(item);
+		}
+
+		[Test]
 		public void PlaceInRoom()
 		{
 			var room = new Room();

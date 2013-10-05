@@ -11,6 +11,12 @@ namespace Amud.Core
 			Owner.Add(this);
 		}
 
+		public Item(Room room)
+		{
+			Room = room;
+			Room.Add(this);
+		}
+
 		public string Name { get; set; }
 		public Player Owner { get; set; }
 		public Room Room { get; set; }
