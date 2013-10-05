@@ -184,6 +184,12 @@
   <ItemGroup>
     <Content Include="Views\Play\Index.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Amud.Core\Amud.Core.csproj">
+      <Project>{50589832-2070-46F4-8F3D-B6BE25769106}</Project>
+      <Name>Amud.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

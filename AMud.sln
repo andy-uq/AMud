@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0D5CB5
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D900FCF9-B9E0-4C82-AFED-B303EB29283C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amud.Core", "Amud.Core\Amud.Core.csproj", "{50589832-2070-46F4-8F3D-B6BE25769106}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{E608F1F5-C24A-42B3-876C-83268451D678}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E608F1F5-C24A-42B3-876C-83268451D678}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E608F1F5-C24A-42B3-876C-83268451D678}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D900FCF9-B9E0-4C82-AFED-B303EB29283C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D900FCF9-B9E0-4C82-AFED-B303EB29283C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D900FCF9-B9E0-4C82-AFED-B303EB29283C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D900FCF9-B9E0-4C82-AFED-B303EB29283C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50589832-2070-46F4-8F3D-B6BE25769106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50589832-2070-46F4-8F3D-B6BE25769106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50589832-2070-46F4-8F3D-B6BE25769106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50589832-2070-46F4-8F3D-B6BE25769106}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

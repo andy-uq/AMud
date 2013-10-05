@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using AMud.SignalR;
+using Amud.Core;
 using Autofac;
 using Autofac.Integration.Mvc;
 
